@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="24B91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="VocabularyEntity" representedClassName="VocabularyEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="audioURL" optional="YES" attributeType="String"/>
+        <attribute name="category" attributeType="String" defaultValueString="未分类"/>
+        <attribute name="id" attributeType="UUID" defaultValueString="00000000-0000-0000-0000-000000000000" usesScalarValueType="YES"/>
+        <attribute name="japanese" attributeType="String" defaultValueString="“”"/>
+        <attribute name="lastReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="masteryLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="meaning" attributeType="String" defaultValueString="“”"/>
+        <attribute name="nextReviewDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="partOfSpeech" attributeType="String" defaultValueString=""/>
+        <attribute name="reading" attributeType="String" defaultValueString=""/>
+        <attribute name="reviewCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="examples" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VocabularyExampleEntity" inverseName="vocabulary" inverseEntity="VocabularyExampleEntity"/>
+    </entity>
+    <entity name="VocabularyExampleEntity" representedClassName="VocabularyExampleEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="japanese" attributeType="String" defaultValueString=""/>
+        <attribute name="meaning" attributeType="String" defaultValueString=""/>
+        <attribute name="reading" attributeType="String" defaultValueString=""/>
+        <relationship name="vocabulary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabularyEntity" inverseName="examples" inverseEntity="VocabularyEntity"/>
+    </entity>
+</model>
