@@ -2,13 +2,12 @@ import SwiftUI
 
 struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var authService = AuthenticationService()
+    @EnvironmentObject var authService: AuthenticationService
     
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var displayName = ""
-    @State private var isLoading = false
     @State private var showAlert = false
     @State private var alertMessage = ""
     
@@ -25,22 +24,26 @@ struct SignUpView: View {
                         TextField("昵称", text: $displayName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .autocapitalization(.none)
+                            .disabled(authService.isLoading)
                         
                         TextField("邮箱", text: $email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
+                            .disabled(authService.isLoading)
                         
-                        SecureField("密码", text: $password)
+                        SecureField("密码（至少6位字符）", text: $password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(authService.isLoading)
                         
                         SecureField("确认密码", text: $confirmPassword)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(authService.isLoading)
                     }
                     .padding(.horizontal, 30)
                     
                     Button(action: signUp) {
-                        if isLoading {
+                        if authService.isLoading {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                         } else {
@@ -54,7 +57,7 @@ struct SignUpView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding(.horizontal, 30)
-                    .disabled(isLoading)
+                    .disabled(authService.isLoading)
                 }
             }
             .navigationBarItems(leading: Button("返回") {
@@ -71,7 +74,8 @@ struct SignUpView: View {
     }
     
     private func signUp() {
-        guard !email.isEmpty, !password.isEmpty, !displayName.isEmpty else {
+        // 验证输入
+        guard !email.isEmpty && !password.isEmpty && !displayName.isEmpty else {
             alertMessage = "请填写所有必填项"
             showAlert = true
             return
@@ -83,16 +87,23 @@ struct SignUpView: View {
             return
         }
         
-        isLoading = true
+        guard password.count >= 6 else {
+            alertMessage = "密码长度至少为6位"
+            showAlert = true
+            return
+        }
+        
         Task {
             do {
                 try await authService.signUp(email: email, password: password, displayName: displayName)
                 presentationMode.wrappedValue.dismiss()
-            } catch {
+            } catch let error as AuthError {
                 alertMessage = error.localizedDescription
                 showAlert = true
+            } catch {
+                alertMessage = "注册失败：\(error.localizedDescription)"
+                showAlert = true
             }
-            isLoading = false
         }
     }
 } 

@@ -1,62 +1,114 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var username = "用户名"
-    @State private var learningDays = 0
-    @State private var masteredKana = 0
-    @State private var masteredWords = 0
+    @EnvironmentObject private var authService: AuthenticationService
+    @State private var showingLogoutAlert = false
+    @State private var showingErrorAlert = false
+    @State private var errorMessage = ""
     
     var body: some View {
         NavigationView {
             List {
-                Section("个人信息") {
-                    HStack {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .frame(width: 60, height: 60)
-                            .foregroundColor(.blue)
+                if let user = authService.currentUser {
+                    Section("个人信息") {
+                        HStack {
+                            Text("头像")
+                            Spacer()
+                            if let url = user.profileImageUrl {
+                                AsyncImage(url: URL(string: url)) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+                                } placeholder: {
+                                    Image(systemName: "person.circle.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(.gray)
+                                }
+                            } else {
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.gray)
+                            }
+                        }
                         
-                        VStack(alignment: .leading) {
-                            Text(username)
-                                .font(.title2)
-                            Text("学习天数: \(learningDays)天")
-                                .font(.caption)
+                        HStack {
+                            Text("昵称")
+                            Spacer()
+                            Text(user.displayName ?? "未设置")
+                                .foregroundColor(.gray)
+                        }
+                        
+                        HStack {
+                            Text("邮箱")
+                            Spacer()
+                            Text(user.email)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    
+                    Section("学习信息") {
+                        HStack {
+                            Text("当前等级")
+                            Spacer()
+                            Text(user.learningLevel)
+                                .foregroundColor(.gray)
+                        }
+                        
+                        HStack {
+                            Text("学习天数")
+                            Spacer()
+                            Text("\(user.studyStreak)天")
+                                .foregroundColor(.gray)
+                        }
+                        
+                        HStack {
+                            Text("已完成课程")
+                            Spacer()
+                            Text("\(user.completedLessons.count)个")
+                                .foregroundColor(.gray)
                         }
                     }
                 }
                 
-                Section("学习统计") {
-                    HStack {
-                        VStack {
-                            Text("\(masteredKana)")
-                                .font(.title2)
-                            Text("已掌握假名")
-                                .font(.caption)
+                Section {
+                    Button(role: .destructive) {
+                        showingLogoutAlert = true
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("退出登录")
+                            Spacer()
                         }
-                        Spacer()
-                        VStack {
-                            Text("\(masteredWords)")
-                                .font(.title2)
-                            Text("已掌握词汇")
-                                .font(.caption)
-                        }
-                    }
-                    .padding()
-                }
-                
-                Section("设置") {
-                    NavigationLink("学习提醒") {
-                        Text("提醒设置")
-                    }
-                    NavigationLink("学习目标") {
-                        Text("目标设置")
-                    }
-                    NavigationLink("关于") {
-                        Text("关于应用")
                     }
                 }
             }
             .navigationTitle("个人中心")
+            .alert("确认退出", isPresented: $showingLogoutAlert) {
+                Button("取消", role: .cancel) { }
+                Button("退出", role: .destructive) {
+                    Task {
+                        do {
+                            try await authService.signOut()
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            showingErrorAlert = true
+                        }
+                    }
+                }
+            } message: {
+                Text("确定要退出登录吗？")
+            }
+            .alert("退出失败", isPresented: $showingErrorAlert) {
+                Button("确定", role: .cancel) { }
+            } message: {
+                Text(errorMessage)
+            }
         }
     }
 }

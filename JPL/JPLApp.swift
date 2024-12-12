@@ -7,28 +7,42 @@
 
 import SwiftUI
 import CoreData
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseConfig.configure()
+        return true
+    }
+}
 
 @main
 struct JPLApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
     @StateObject private var vocabularyViewModel = VocabularyViewModel()
+    @StateObject private var authService = AuthenticationService()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(vocabularyViewModel)
-                .task {
-                    do {
-                        // 强制重新导入（仅用于测试）
-                        VocabularyImportService.shared.resetImportStatus()
-                        try await VocabularyImportService.shared.importDefaultVocabulary()
-                        await vocabularyViewModel.loadVocabularyItems()
-                    } catch {
-                        print("导入词汇失败: \(error.localizedDescription)")
-                        print("错误详情: \(error)")
+            if authService.isAuthenticated {
+                ContentView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environmentObject(vocabularyViewModel)
+                    .environmentObject(authService)
+                    .task {
+                        do {
+                            try await VocabularyImportService.shared.importDefaultVocabulary()
+                            await vocabularyViewModel.loadVocabularyItems()
+                        } catch {
+                            print("导入词汇失败: \(error.localizedDescription)")
+                        }
                     }
-                }
+            } else {
+                LoginView()
+                    .environmentObject(authService)
+            }
         }
     }
 }

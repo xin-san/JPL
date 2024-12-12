@@ -14,6 +14,40 @@
 		3644EDAA2D070A7900410385 /* JPLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3644EDA92D070A7900410385 /* JPLTests.swift */; };
 		3644EDB42D070A7900410385 /* JPLUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3644EDB32D070A7900410385 /* JPLUITests.swift */; };
 		3644EDB62D070A7900410385 /* JPLUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3644EDB52D070A7900410385 /* JPLUITestsLaunchTests.swift */; };
+		36B7B75E2D08630100679CE6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B75B2D08630100679CE6 /* ProfileView.swift */; };
+		36B7B7602D08630100679CE6 /* GrammarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7582D08630100679CE6 /* GrammarView.swift */; };
+		36B7B7622D08630100679CE6 /* KanaLearningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7592D08630100679CE6 /* KanaLearningView.swift */; };
+		36B7B76B2D086B7400679CE6 /* KatakanaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B76A2D086B7400679CE6 /* KatakanaModel.swift */; };
+		36B7B76C2D086B7400679CE6 /* HiraganaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7692D086B7400679CE6 /* HiraganaModel.swift */; };
+		36B7B77E2D08820100679CE6 /* VocabularyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B77B2D08820100679CE6 /* VocabularyModel.swift */; };
+		36B7B77F2D08820100679CE6 /* VocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B77C2D08820100679CE6 /* VocabularyViewModel.swift */; };
+		36B7B7812D08820D00679CE6 /* VocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7802D08820D00679CE6 /* VocabularyView.swift */; };
+		36B7B7842D08854800679CE6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7822D08854800679CE6 /* CoreDataManager.swift */; };
+		36B7B78E2D08867200679CE6 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B78D2D08867200679CE6 /* CoreDataTestView.swift */; };
+		36B7B7922D0888D600679CE6 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7912D0888D600679CE6 /* MainTabView.swift */; };
+		36B7B7C02D0AB9BA00679CE6 /* VocabularyReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7BF2D0AB9BA00679CE6 /* VocabularyReviewView.swift */; };
+		36B7B7C72D0ABCBA00679CE6 /* VocabularyItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7C42D0ABCBA00679CE6 /* VocabularyItemRow.swift */; };
+		36B7B7C82D0ABCBA00679CE6 /* VocabularyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7C62D0ABCBA00679CE6 /* VocabularyDetailView.swift */; };
+		36B7B7C92D0ABCBA00679CE6 /* AddVocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7C32D0ABCBA00679CE6 /* AddVocabularyView.swift */; };
+		36B7B7D22D0AC39400679CE6 /* JPL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7D02D0AC39400679CE6 /* JPL.xcdatamodeld */; };
+		36B7B7D72D0ACC7200679CE6 /* VocabularySQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7D52D0ACC7200679CE6 /* VocabularySQLiteManager.swift */; };
+		36B7B7DC2D0AF88B00679CE6 /* n5_vocabulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B7B7D92D0AF88B00679CE6 /* n5_vocabulary.json */; };
+		36B7B7DD2D0AF88B00679CE6 /* vocabulary_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B7B7DA2D0AF88B00679CE6 /* vocabulary_data.json */; };
+		36B7B7DF2D0AF8AA00679CE6 /* VocabularyImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7DE2D0AF8AA00679CE6 /* VocabularyImportService.swift */; };
+		36B7B7E22D0B128C00679CE6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B7E12D0B128C00679CE6 /* FirebaseAnalytics */; };
+		36B7B7E42D0B128C00679CE6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B7E32D0B128C00679CE6 /* FirebaseAuth */; };
+		36B7B7E62D0B128C00679CE6 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B7E52D0B128C00679CE6 /* FirebaseCore */; };
+		36B7B7E82D0B128C00679CE6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B7E72D0B128C00679CE6 /* FirebaseFirestore */; };
+		36B7B7EA2D0B128C00679CE6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B7E92D0B128C00679CE6 /* FirebaseStorage */; };
+		36B7B7F12D0B130200679CE6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7ED2D0B130200679CE6 /* LoginView.swift */; };
+		36B7B7F22D0B130200679CE6 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7EE2D0B130200679CE6 /* ResetPasswordView.swift */; };
+		36B7B7F32D0B130200679CE6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7EF2D0B130200679CE6 /* SignUpView.swift */; };
+		36B7B7F52D0B133D00679CE6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7F42D0B133D00679CE6 /* User.swift */; };
+		36B7B7F82D0B136B00679CE6 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7F62D0B136B00679CE6 /* FirebaseConfig.swift */; };
+		36B7B7FB2D0B137500679CE6 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7B7F92D0B137500679CE6 /* AuthenticationService.swift */; };
+		36B7B8012D0B1D6200679CE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B7B8002D0B1D6200679CE6 /* GoogleService-Info.plist */; };
+		36B7B8042D0B200B00679CE6 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B8032D0B200B00679CE6 /* GoogleSignIn */; };
+		36B7B8062D0B200B00679CE6 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36B7B8052D0B200B00679CE6 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +67,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		36B7B8092D0B24D100679CE6 /* Copy Info.plist */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			name = "Copy Info.plist";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3644ED952D070A7800410385 /* JPL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3644ED982D070A7800410385 /* JPLApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPLApp.swift; sourceTree = "<group>"; };
@@ -44,6 +91,33 @@
 		3644EDAF2D070A7900410385 /* JPLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3644EDB32D070A7900410385 /* JPLUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPLUITests.swift; sourceTree = "<group>"; };
 		3644EDB52D070A7900410385 /* JPLUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPLUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36B7B7582D08630100679CE6 /* GrammarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarView.swift; sourceTree = "<group>"; };
+		36B7B7592D08630100679CE6 /* KanaLearningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaLearningView.swift; sourceTree = "<group>"; };
+		36B7B75B2D08630100679CE6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		36B7B7692D086B7400679CE6 /* HiraganaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiraganaModel.swift; sourceTree = "<group>"; };
+		36B7B76A2D086B7400679CE6 /* KatakanaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatakanaModel.swift; sourceTree = "<group>"; };
+		36B7B77B2D08820100679CE6 /* VocabularyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyModel.swift; sourceTree = "<group>"; };
+		36B7B77C2D08820100679CE6 /* VocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewModel.swift; sourceTree = "<group>"; };
+		36B7B7802D08820D00679CE6 /* VocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyView.swift; sourceTree = "<group>"; };
+		36B7B7822D08854800679CE6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		36B7B78D2D08867200679CE6 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
+		36B7B7912D0888D600679CE6 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		36B7B7BF2D0AB9BA00679CE6 /* VocabularyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyReviewView.swift; sourceTree = "<group>"; };
+		36B7B7C32D0ABCBA00679CE6 /* AddVocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVocabularyView.swift; sourceTree = "<group>"; };
+		36B7B7C42D0ABCBA00679CE6 /* VocabularyItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyItemRow.swift; sourceTree = "<group>"; };
+		36B7B7C62D0ABCBA00679CE6 /* VocabularyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyDetailView.swift; sourceTree = "<group>"; };
+		36B7B7D12D0AC39400679CE6 /* JPL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JPL.xcdatamodel; sourceTree = "<group>"; };
+		36B7B7D52D0ACC7200679CE6 /* VocabularySQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySQLiteManager.swift; sourceTree = "<group>"; };
+		36B7B7D92D0AF88B00679CE6 /* n5_vocabulary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = n5_vocabulary.json; sourceTree = "<group>"; };
+		36B7B7DA2D0AF88B00679CE6 /* vocabulary_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vocabulary_data.json; sourceTree = "<group>"; };
+		36B7B7DE2D0AF8AA00679CE6 /* VocabularyImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyImportService.swift; sourceTree = "<group>"; };
+		36B7B7ED2D0B130200679CE6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		36B7B7EE2D0B130200679CE6 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		36B7B7EF2D0B130200679CE6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		36B7B7F42D0B133D00679CE6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		36B7B7F62D0B136B00679CE6 /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
+		36B7B7F92D0B137500679CE6 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		36B7B8002D0B1D6200679CE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +125,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36B7B7E22D0B128C00679CE6 /* FirebaseAnalytics in Frameworks */,
+				36B7B7E82D0B128C00679CE6 /* FirebaseFirestore in Frameworks */,
+				36B7B8062D0B200B00679CE6 /* GoogleSignInSwift in Frameworks */,
+				36B7B7E62D0B128C00679CE6 /* FirebaseCore in Frameworks */,
+				36B7B7EA2D0B128C00679CE6 /* FirebaseStorage in Frameworks */,
+				36B7B7E42D0B128C00679CE6 /* FirebaseAuth in Frameworks */,
+				36B7B8042D0B200B00679CE6 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +175,12 @@
 		3644ED972D070A7800410385 /* JPL */ = {
 			isa = PBXGroup;
 			children = (
+				36B7B8002D0B1D6200679CE6 /* GoogleService-Info.plist */,
+				36B7B7FA2D0B137500679CE6 /* Services */,
+				36B7B7F72D0B136B00679CE6 /* Config */,
+				36B7B7DB2D0AF88B00679CE6 /* Resources */,
+				36B7B7652D0863EE00679CE6 /* Models */,
+				36B7B75D2D08630100679CE6 /* Views */,
 				3644ED982D070A7800410385 /* JPLApp.swift */,
 				3644ED9A2D070A7800410385 /* ContentView.swift */,
 				3644ED9C2D070A7900410385 /* Assets.xcassets */,
@@ -127,6 +214,107 @@
 			path = JPLUITests;
 			sourceTree = "<group>";
 		};
+		36B7B75D2D08630100679CE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7F02D0B130200679CE6 /* Authentication */,
+				36B7B7C32D0ABCBA00679CE6 /* AddVocabularyView.swift */,
+				36B7B7C52D0ABCBA00679CE6 /* Components */,
+				36B7B7C62D0ABCBA00679CE6 /* VocabularyDetailView.swift */,
+				36B7B7BF2D0AB9BA00679CE6 /* VocabularyReviewView.swift */,
+				36B7B7912D0888D600679CE6 /* MainTabView.swift */,
+				36B7B78D2D08867200679CE6 /* CoreDataTestView.swift */,
+				36B7B7802D08820D00679CE6 /* VocabularyView.swift */,
+				36B7B7582D08630100679CE6 /* GrammarView.swift */,
+				36B7B7592D08630100679CE6 /* KanaLearningView.swift */,
+				36B7B75B2D08630100679CE6 /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		36B7B7642D0863EE00679CE6 /* Kana */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7692D086B7400679CE6 /* HiraganaModel.swift */,
+				36B7B76A2D086B7400679CE6 /* KatakanaModel.swift */,
+			);
+			path = Kana;
+			sourceTree = "<group>";
+		};
+		36B7B7652D0863EE00679CE6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7F42D0B133D00679CE6 /* User.swift */,
+				36B7B7832D08854800679CE6 /* CoreData */,
+				36B7B77D2D08820100679CE6 /* Vocabulary */,
+				36B7B7642D0863EE00679CE6 /* Kana */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		36B7B77D2D08820100679CE6 /* Vocabulary */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7DE2D0AF8AA00679CE6 /* VocabularyImportService.swift */,
+				36B7B7D52D0ACC7200679CE6 /* VocabularySQLiteManager.swift */,
+				36B7B77B2D08820100679CE6 /* VocabularyModel.swift */,
+				36B7B77C2D08820100679CE6 /* VocabularyViewModel.swift */,
+			);
+			path = Vocabulary;
+			sourceTree = "<group>";
+		};
+		36B7B7832D08854800679CE6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7D02D0AC39400679CE6 /* JPL.xcdatamodeld */,
+				36B7B7822D08854800679CE6 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		36B7B7C52D0ABCBA00679CE6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7C42D0ABCBA00679CE6 /* VocabularyItemRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		36B7B7DB2D0AF88B00679CE6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7D92D0AF88B00679CE6 /* n5_vocabulary.json */,
+				36B7B7DA2D0AF88B00679CE6 /* vocabulary_data.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		36B7B7F02D0B130200679CE6 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7ED2D0B130200679CE6 /* LoginView.swift */,
+				36B7B7EE2D0B130200679CE6 /* ResetPasswordView.swift */,
+				36B7B7EF2D0B130200679CE6 /* SignUpView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		36B7B7F72D0B136B00679CE6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7F62D0B136B00679CE6 /* FirebaseConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		36B7B7FA2D0B137500679CE6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				36B7B7F92D0B137500679CE6 /* AuthenticationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +325,7 @@
 				3644ED912D070A7800410385 /* Sources */,
 				3644ED922D070A7800410385 /* Frameworks */,
 				3644ED932D070A7800410385 /* Resources */,
+				36B7B8092D0B24D100679CE6 /* Copy Info.plist */,
 			);
 			buildRules = (
 			);
@@ -215,6 +404,10 @@
 				Base,
 			);
 			mainGroup = 3644ED8C2D070A7800410385;
+			packageReferences = (
+				36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				36B7B8022D0B200B00679CE6 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = 3644ED962D070A7800410385 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,7 +425,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3644EDA02D070A7900410385 /* Preview Assets.xcassets in Resources */,
+				36B7B7DC2D0AF88B00679CE6 /* n5_vocabulary.json in Resources */,
+				36B7B7DD2D0AF88B00679CE6 /* vocabulary_data.json in Resources */,
 				3644ED9D2D070A7900410385 /* Assets.xcassets in Resources */,
+				36B7B8012D0B1D6200679CE6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +453,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36B7B7D22D0AC39400679CE6 /* JPL.xcdatamodeld in Sources */,
+				36B7B75E2D08630100679CE6 /* ProfileView.swift in Sources */,
+				36B7B7602D08630100679CE6 /* GrammarView.swift in Sources */,
+				36B7B7812D08820D00679CE6 /* VocabularyView.swift in Sources */,
+				36B7B7DF2D0AF8AA00679CE6 /* VocabularyImportService.swift in Sources */,
+				36B7B7D72D0ACC7200679CE6 /* VocabularySQLiteManager.swift in Sources */,
+				36B7B7622D08630100679CE6 /* KanaLearningView.swift in Sources */,
+				36B7B78E2D08867200679CE6 /* CoreDataTestView.swift in Sources */,
+				36B7B7922D0888D600679CE6 /* MainTabView.swift in Sources */,
+				36B7B76B2D086B7400679CE6 /* KatakanaModel.swift in Sources */,
+				36B7B7F12D0B130200679CE6 /* LoginView.swift in Sources */,
+				36B7B7FB2D0B137500679CE6 /* AuthenticationService.swift in Sources */,
+				36B7B7F22D0B130200679CE6 /* ResetPasswordView.swift in Sources */,
+				36B7B7F32D0B130200679CE6 /* SignUpView.swift in Sources */,
+				36B7B7842D08854800679CE6 /* CoreDataManager.swift in Sources */,
+				36B7B7C72D0ABCBA00679CE6 /* VocabularyItemRow.swift in Sources */,
+				36B7B7C82D0ABCBA00679CE6 /* VocabularyDetailView.swift in Sources */,
+				36B7B7C92D0ABCBA00679CE6 /* AddVocabularyView.swift in Sources */,
+				36B7B76C2D086B7400679CE6 /* HiraganaModel.swift in Sources */,
+				36B7B7C02D0AB9BA00679CE6 /* VocabularyReviewView.swift in Sources */,
 				3644ED9B2D070A7800410385 /* ContentView.swift in Sources */,
+				36B7B7F52D0B133D00679CE6 /* User.swift in Sources */,
+				36B7B77E2D08820100679CE6 /* VocabularyModel.swift in Sources */,
+				36B7B77F2D08820100679CE6 /* VocabularyViewModel.swift in Sources */,
+				36B7B7F82D0B136B00679CE6 /* FirebaseConfig.swift in Sources */,
 				3644ED992D070A7800410385 /* JPLApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +640,9 @@
 				DEVELOPMENT_TEAM = Z5964TBMZP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JPL/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "天天日语";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -430,7 +653,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = c.JPL;
+				PRODUCT_BUNDLE_IDENTIFIER = tanxin.JPL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -449,6 +672,9 @@
 				DEVELOPMENT_TEAM = Z5964TBMZP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JPL/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "天天日语";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,7 +685,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = c.JPL;
+				PRODUCT_BUNDLE_IDENTIFIER = tanxin.JPL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -583,6 +809,76 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+		36B7B8022D0B200B00679CE6 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		36B7B7E12D0B128C00679CE6 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		36B7B7E32D0B128C00679CE6 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		36B7B7E52D0B128C00679CE6 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		36B7B7E72D0B128C00679CE6 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		36B7B7E92D0B128C00679CE6 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B7E02D0B128C00679CE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		36B7B8032D0B200B00679CE6 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B8022D0B200B00679CE6 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		36B7B8052D0B200B00679CE6 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36B7B8022D0B200B00679CE6 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		36B7B7D02D0AC39400679CE6 /* JPL.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				36B7B7D12D0AC39400679CE6 /* JPL.xcdatamodel */,
+			);
+			currentVersion = 36B7B7D12D0AC39400679CE6 /* JPL.xcdatamodel */;
+			path = JPL.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3644ED8D2D070A7800410385 /* Project object */;
 }

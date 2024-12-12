@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct CoreDataTestView: View {
     @StateObject private var viewModel = VocabularyViewModel()
@@ -34,30 +35,14 @@ struct CoreDataTestView: View {
                     Button("删除最后一个词汇") {
                         deleteLastVocabulary()
                     }
-                    
-                    Button("删除所有数据") {
-                        deleteAllData()
-                    }
-                    .foregroundColor(.red)
                 }
                 
-                Section(header: Text("当前数据 (\(viewModel.vocabularyItems.count)个词汇)")) {
-                    ForEach(viewModel.vocabularyItems) { item in
-                        VStack(alignment: .leading) {
-                            Text(item.japanese)
-                                .font(.headline)
-                            Text(item.reading)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                            Text(item.meaning)
-                                .font(.body)
-                            HStack {
-                                Text("掌握度: \(item.masteryLevel)/5")
-                                Spacer()
-                                Text("复习次数: \(item.reviewCount)")
-                            }
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                if viewModel.isLoading {
+                    ProgressView()
+                } else {
+                    Section(header: Text("当前数据 (\(viewModel.vocabularyItems.count)个词汇)")) {
+                        ForEach(viewModel.vocabularyItems) { item in
+                            VocabularyItemRow(item: item)
                         }
                     }
                 }
@@ -68,9 +53,7 @@ struct CoreDataTestView: View {
             } message: {
                 Text(testMessage)
             }
-            .onAppear {
-                viewModel.fetchVocabulary()
-            }
+            // ViewModel 在 init 时会自动加载数据，所以不需要额外的 onAppear
         }
     }
     
@@ -87,7 +70,9 @@ struct CoreDataTestView: View {
             nextReviewDate: nil,
             masteryLevel: 0,
             reviewCount: 0,
-            audioURL: nil
+            audioURL: nil,
+            isDownloaded: false,
+            syncStatus: .needsUpload
         )
         
         viewModel.addVocabulary(newItem)
@@ -122,7 +107,9 @@ struct CoreDataTestView: View {
                 nextReviewDate: nil,
                 masteryLevel: 0,
                 reviewCount: 0,
-                audioURL: nil
+                audioURL: nil,
+                isDownloaded: false,
+                syncStatus: .needsUpload
             )
             viewModel.addVocabulary(item)
         }
@@ -136,7 +123,7 @@ struct CoreDataTestView: View {
             return
         }
         
-        viewModel.updateVocabularyMastery(firstItem, correct: true)
+        viewModel.updateVocabularyProgress(firstItem, correct: true)
         showMessage("已更新第一个词汇的掌握度！")
     }
     
@@ -150,20 +137,8 @@ struct CoreDataTestView: View {
         showMessage("已删除最后一个词汇！")
     }
     
-    private func deleteAllData() {
-        CoreDataManager.shared.deleteAllVocabulary()
-        viewModel.fetchVocabulary()
-        showMessage("已删除所有数据！")
-    }
-    
     private func showMessage(_ message: String) {
         testMessage = message
         showingMessage = true
-    }
-}
-
-struct CoreDataTestView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoreDataTestView()
     }
 } 

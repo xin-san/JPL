@@ -2,51 +2,166 @@ import Foundation
 
 struct VocabularyItem: Identifiable, Codable {
     let id: UUID
-    var japanese: String          // 日语单词
-    var reading: String          // 读音
-    var meaning: String          // 中文含义
-    var partOfSpeech: String    // 词性
-    var examples: [Example]      // 例句
-    var category: Category       // 词汇分类
-    var lastReviewed: Date?     // 上次复习时间
-    var nextReviewDate: Date?   // 下次复习时间
-    var masteryLevel: Int       // 掌握程度 (0-5)
-    var reviewCount: Int        // 复习次数
-    var audioURL: String?       // 发音音频URL
+    var japanese: String
+    var reading: String
+    var meaning: String
+    var partOfSpeech: String
+    var examples: [Example]
+    var category: Category
+    var lastReviewed: Date?
+    var nextReviewDate: Date?
+    var masteryLevel: Int
+    var reviewCount: Int
+    var audioURL: String?
+    var isDownloaded: Bool
+    var syncStatus: SyncStatus
     
     struct Example: Codable {
-        var japanese: String    // 日语例句
-        var reading: String     // 例句读音
-        var meaning: String     // 中文翻译
+        var japanese: String
+        var reading: String
+        var meaning: String
     }
     
     enum Category: String, Codable, CaseIterable {
         case basic = "基础词汇"
+        case n5 = "N5"
+        case n4 = "N4"
+        case n3 = "N3"
+        case n2 = "N2"
+        case n1 = "N1"
         case daily = "日常用语"
         case business = "商务用语"
-        case academic = "学术用语"
-        case jlpt5 = "JLPT N5"
-        case jlpt4 = "JLPT N4"
-        case jlpt3 = "JLPT N3"
-        case other = "其他"
     }
     
-    // 计算下次复习时间
-    mutating func calculateNextReview() {
-        let intervals = [1, 3, 7, 14, 30, 90] // 间隔天数
-        let interval = masteryLevel < intervals.count ? intervals[masteryLevel] : intervals.last!
-        nextReviewDate = Date().addingTimeInterval(Double(interval * 24 * 60 * 60))
+    enum SyncStatus: String, Codable {
+        case synced
+        case needsUpload
+        case needsDownload
+        case conflict
     }
     
-    // 更新掌握度
-    mutating func updateMastery(correct: Bool) {
-        if correct {
-            masteryLevel = min(masteryLevel + 1, 5)
-        } else {
-            masteryLevel = max(masteryLevel - 1, 0)
-        }
-        reviewCount += 1
-        lastReviewed = Date()
-        calculateNextReview()
+    init(id: UUID = UUID(),
+         japanese: String,
+         reading: String,
+         meaning: String,
+         partOfSpeech: String,
+         examples: [Example] = [],
+         category: Category,
+         lastReviewed: Date? = nil,
+         nextReviewDate: Date? = nil,
+         masteryLevel: Int = 0,
+         reviewCount: Int = 0,
+         audioURL: String? = nil,
+         isDownloaded: Bool = false,
+         syncStatus: SyncStatus = .needsUpload) {
+        self.id = id
+        self.japanese = japanese
+        self.reading = reading
+        self.meaning = meaning
+        self.partOfSpeech = partOfSpeech
+        self.examples = examples
+        self.category = category
+        self.lastReviewed = lastReviewed
+        self.nextReviewDate = nextReviewDate
+        self.masteryLevel = masteryLevel
+        self.reviewCount = reviewCount
+        self.audioURL = audioURL
+        self.isDownloaded = isDownloaded
+        self.syncStatus = syncStatus
     }
+}
+
+// MARK: - API Models
+struct APIVocabularyResponse: Codable {
+    let items: [VocabularyItem]
+    let totalCount: Int
+    let page: Int
+    let pageSize: Int
+}
+
+struct APIVocabularyRequest: Codable {
+    let item: VocabularyItem
+    let userId: String
+    let timestamp: Date
+}
+
+// MARK: - Sample Data
+extension VocabularyItem {
+    static let sampleData: [VocabularyItem] = [
+        VocabularyItem(
+            japanese: "こんにちは",
+            reading: "konnichiwa",
+            meaning: "你好",
+            partOfSpeech: "感叹词",
+            examples: [
+                Example(
+                    japanese: "こんにちは、山田さん。",
+                    reading: "konnichiwa, yamada san.",
+                    meaning: "你好，山田先生。"
+                )
+            ],
+            category: .basic,
+            masteryLevel: 0
+        ),
+        VocabularyItem(
+            japanese: "ありがとう",
+            reading: "arigatou",
+            meaning: "谢谢",
+            partOfSpeech: "感叹词",
+            examples: [
+                Example(
+                    japanese: "どうもありがとう。",
+                    reading: "doumo arigatou.",
+                    meaning: "非常感谢。"
+                )
+            ],
+            category: .basic,
+            masteryLevel: 0
+        ),
+        VocabularyItem(
+            japanese: "さようなら",
+            reading: "sayounara",
+            meaning: "再见",
+            partOfSpeech: "感叹词",
+            examples: [
+                Example(
+                    japanese: "さようなら、また会いましょう。",
+                    reading: "sayounara, mata aimashou.",
+                    meaning: "再见，我们再见面吧。"
+                )
+            ],
+            category: .basic,
+            masteryLevel: 0
+        ),
+        VocabularyItem(
+            japanese: "おはよう",
+            reading: "ohayou",
+            meaning: "早上好",
+            partOfSpeech: "感叹词",
+            examples: [
+                Example(
+                    japanese: "おはようございます。",
+                    reading: "ohayou gozaimasu.",
+                    meaning: "早上好（礼貌语）。"
+                )
+            ],
+            category: .basic,
+            masteryLevel: 0
+        ),
+        VocabularyItem(
+            japanese: "勉強",
+            reading: "benkyou",
+            meaning: "学习",
+            partOfSpeech: "名词/动词",
+            examples: [
+                Example(
+                    japanese: "日本語を勉強しています。",
+                    reading: "nihongo wo benkyou shiteimasu.",
+                    meaning: "我在学习日语。"
+                )
+            ],
+            category: .n5,
+            masteryLevel: 0
+        )
+    ]
 }

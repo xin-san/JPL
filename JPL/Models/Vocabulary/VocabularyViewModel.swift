@@ -1,80 +1,49 @@
 import Foundation
 import Combine
-import CoreData
+import SwiftUI
 
+@MainActor
 class VocabularyViewModel: ObservableObject {
     @Published var vocabularyItems: [VocabularyItem] = []
-    @Published var selectedCategory: VocabularyItem.Category?
-    @Published var searchText: String = ""
-    @Published var sortOption: SortOption = .lastReviewed
-    @Published var filterOption: FilterOption = .all
+    @Published var filteredItems: [VocabularyItem] = []
+    @Published var todayReviewItems: [VocabularyItem] = []
+    @Published var errorMessage: String?
+    @Published var isLoading = false
     
-    private var cancellables = Set<AnyCancellable>()
-    private let coreDataManager = CoreDataManager.shared
+    private let sqliteManager = VocabularySQLiteManager.shared
     
-    enum SortOption {
-        case alphabetical
-        case lastReviewed
-        case masteryLevel
-        case nextReview
-    }
-    
-    enum FilterOption {
-        case all
-        case needsReview
-        case mastered
-        case struggling
-    }
-    
-    init() {
-        setupBindings()
-        fetchVocabulary()
-    }
-    
-    private func setupBindings() {
-        // 监听搜索文本变化
-        $searchText
-            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.objectWillChange.send()
-            }
-            .store(in: &cancellables)
-    }
-    
-    // 获取词汇列表
-    func fetchVocabulary() {
-        vocabularyItems = coreDataManager.fetchVocabulary()
-    }
-    
-    // 添加新词汇
-    func addVocabulary(_ item: VocabularyItem) {
-        coreDataManager.createVocabulary(item)
-        fetchVocabulary()
-    }
-    
-    // 更新词汇
-    func updateVocabulary(_ item: VocabularyItem) {
-        coreDataManager.updateVocabulary(item)
-        fetchVocabulary()
-    }
-    
-    // 删除词汇
-    func deleteVocabulary(_ item: VocabularyItem) {
-        coreDataManager.deleteVocabulary(item)
-        fetchVocabulary()
-    }
-    
-    // 获取需要复习的词汇
-    func getReviewItems() -> [VocabularyItem] {
-        let now = Date()
-        return vocabularyItems.filter { item in
-            guard let nextReview = item.nextReviewDate else { return false }
-            return nextReview <= now
+    @Published var searchText = "" {
+        didSet {
+            filterItems()
         }
     }
     
-    // 筛选和排序词汇
-    func filteredVocabulary() -> [VocabularyItem] {
+    @Published var selectedCategory: VocabularyItem.Category? {
+        didSet {
+            filterItems()
+        }
+    }
+    
+    init() {
+        Task {
+            await loadVocabularyItems()
+        }
+    }
+    
+    func loadVocabularyItems() async {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            vocabularyItems = try sqliteManager.fetchVocabularyItems()
+            filterItems()
+            updateTodayReviewItems()
+        } catch {
+            errorMessage = "加载词汇失败: \(error.localizedDescription)"
+        }
+    }
+    
+    private func filterItems() {
         var filtered = vocabularyItems
         
         // 应用分类筛选
@@ -85,46 +54,89 @@ class VocabularyViewModel: ObservableObject {
         // 应用搜索筛选
         if !searchText.isEmpty {
             filtered = filtered.filter {
-                $0.japanese.contains(searchText) ||
-                $0.reading.contains(searchText) ||
-                $0.meaning.contains(searchText)
+                $0.japanese.localizedCaseInsensitiveContains(searchText) ||
+                $0.reading.localizedCaseInsensitiveContains(searchText) ||
+                $0.meaning.localizedCaseInsensitiveContains(searchText)
             }
         }
         
-        // 应用状态筛选
-        switch filterOption {
-        case .needsReview:
-            filtered = filtered.filter { item in
-                guard let nextReview = item.nextReviewDate else { return false }
-                return nextReview <= Date()
-            }
-        case .mastered:
-            filtered = filtered.filter { $0.masteryLevel >= 4 }
-        case .struggling:
-            filtered = filtered.filter { $0.masteryLevel <= 2 }
-        case .all:
-            break
-        }
-        
-        // 应用排序
-        switch sortOption {
-        case .alphabetical:
-            filtered.sort { $0.reading < $1.reading }
-        case .lastReviewed:
-            filtered.sort { ($0.lastReviewed ?? .distantPast) > ($1.lastReviewed ?? .distantPast) }
-        case .masteryLevel:
-            filtered.sort { $0.masteryLevel > $1.masteryLevel }
-        case .nextReview:
-            filtered.sort { ($0.nextReviewDate ?? .distantFuture) < ($1.nextReviewDate ?? .distantFuture) }
-        }
-        
-        return filtered
+        filteredItems = filtered
     }
     
-    // 更新词汇掌握度
-    func updateVocabularyMastery(_ item: VocabularyItem, correct: Bool) {
+    private func updateTodayReviewItems() {
+        todayReviewItems = getItemsDueForReview()
+    }
+    
+    private func getItemsDueForReview() -> [VocabularyItem] {
+        let now = Date()
+        return vocabularyItems.filter { item in
+            if let nextReview = item.nextReviewDate {
+                return nextReview <= now
+            }
+            return false
+        }
+    }
+    
+    func addVocabulary(_ item: VocabularyItem) {
+        do {
+            try sqliteManager.saveVocabularyItem(item)
+            vocabularyItems.append(item)
+            filterItems()
+            updateTodayReviewItems()
+        } catch {
+            errorMessage = "添加词汇失败: \(error.localizedDescription)"
+        }
+    }
+    
+    func updateVocabularyProgress(_ item: VocabularyItem, correct: Bool) {
         var updatedItem = item
-        updatedItem.updateMastery(correct: correct)
-        updateVocabulary(updatedItem)
+        
+        // 更新复习次数
+        updatedItem.reviewCount += 1
+        
+        // 更新掌握度
+        if correct {
+            updatedItem.masteryLevel = min(5, updatedItem.masteryLevel + 1)
+        } else {
+            updatedItem.masteryLevel = max(0, updatedItem.masteryLevel - 1)
+        }
+        
+        // 更新复习时间
+        updatedItem.lastReviewed = Date()
+        
+        // 计算下次复习时间
+        let interval: TimeInterval
+        switch updatedItem.masteryLevel {
+        case 0: interval = 1 * 24 * 3600  // 1天
+        case 1: interval = 2 * 24 * 3600  // 2天
+        case 2: interval = 4 * 24 * 3600  // 4天
+        case 3: interval = 7 * 24 * 3600  // 1周
+        case 4: interval = 14 * 24 * 3600 // 2周
+        case 5: interval = 30 * 24 * 3600 // 1月
+        default: interval = 1 * 24 * 3600
+        }
+        updatedItem.nextReviewDate = Date().addingTimeInterval(interval)
+        
+        do {
+            try sqliteManager.saveVocabularyItem(updatedItem)
+            if let index = vocabularyItems.firstIndex(where: { $0.id == updatedItem.id }) {
+                vocabularyItems[index] = updatedItem
+                filterItems()
+                updateTodayReviewItems()
+            }
+        } catch {
+            errorMessage = "更新词汇失败: \(error.localizedDescription)"
+        }
+    }
+    
+    func deleteVocabulary(_ item: VocabularyItem) {
+        do {
+            try sqliteManager.deleteVocabularyItem(item.id)
+            vocabularyItems.removeAll { $0.id == item.id }
+            filterItems()
+            updateTodayReviewItems()
+        } catch {
+            errorMessage = "删除词汇失败: \(error.localizedDescription)"
+        }
     }
 }

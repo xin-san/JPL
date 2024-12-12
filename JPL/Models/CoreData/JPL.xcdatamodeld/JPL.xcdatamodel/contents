@@ -4,10 +4,10 @@
         <attribute name="audioURL" optional="YES" attributeType="String"/>
         <attribute name="category" attributeType="String" defaultValueString="未分类"/>
         <attribute name="id" attributeType="UUID" defaultValueString="00000000-0000-0000-0000-000000000000" usesScalarValueType="YES"/>
-        <attribute name="japanese" attributeType="String" defaultValueString="“”"/>
+        <attribute name="japanese" attributeType="String" defaultValueString=""/>
         <attribute name="lastReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="masteryLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="meaning" attributeType="String" defaultValueString="“”"/>
+        <attribute name="meaning" attributeType="String" defaultValueString=""/>
         <attribute name="nextReviewDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="partOfSpeech" attributeType="String" defaultValueString=""/>
         <attribute name="reading" attributeType="String" defaultValueString=""/>
@@ -20,4 +20,4 @@
         <attribute name="reading" attributeType="String" defaultValueString=""/>
         <relationship name="vocabulary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabularyEntity" inverseName="examples" inverseEntity="VocabularyEntity"/>
     </entity>
-</model>
+</model> 

@@ -1,12 +1,15 @@
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct LoginView: View {
-    @StateObject private var authService = AuthenticationService()
+    @EnvironmentObject private var authService: AuthenticationService
     @State private var email = ""
     @State private var password = ""
-    @State private var isLoading = false
     @State private var showSignUp = false
+    @State private var showResetPassword = false
     @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationView {
@@ -28,12 +31,14 @@ struct LoginView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
+                        .disabled(authService.isLoading)
                     
                     SecureField("密码", text: $password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .disabled(authService.isLoading)
                     
-                    Button(action: login) {
-                        if isLoading {
+                    Button(action: emailLogin) {
+                        if authService.isLoading {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                         } else {
@@ -46,12 +51,54 @@ struct LoginView: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
-                    .disabled(isLoading)
+                    .disabled(authService.isLoading)
                     
-                    Button("还没有账号？立即注册") {
-                        showSignUp = true
+                    HStack {
+                        Button("忘记密码？") {
+                            showResetPassword = true
+                        }
+                        .foregroundColor(.blue)
+                        
+                        Spacer()
+                        
+                        Button("注册新账号") {
+                            showSignUp = true
+                        }
+                        .foregroundColor(.blue)
                     }
-                    .foregroundColor(.blue)
+                    
+                    // 分隔线
+                    HStack {
+                        VStack { Divider() }.padding(.horizontal, 8)
+                        Text("或")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        VStack { Divider() }.padding(.horizontal, 8)
+                    }
+                    .padding(.vertical)
+                    
+                    // Google 登录按钮
+                    Button(action: googleLogin) {
+                        HStack(spacing: 12) {
+                            Image("google_logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                            Text("使用 Google 账号登录")
+                                .font(.system(size: 16, weight: .medium))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                    }
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    )
+                    .shadow(color: .gray.opacity(0.2), radius: 2, x: 0, y: 1)
+                    .disabled(authService.isLoading)
                 }
                 .padding(.horizontal, 30)
                 
@@ -61,25 +108,41 @@ struct LoginView: View {
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("登录失败"),
-                    message: Text(authService.error?.localizedDescription ?? "请检查邮箱和密码是否正确"),
+                    message: Text(alertMessage),
                     dismissButton: .default(Text("确定"))
                 )
             }
             .sheet(isPresented: $showSignUp) {
                 SignUpView()
             }
+            .sheet(isPresented: $showResetPassword) {
+                ResetPasswordView()
+            }
         }
     }
     
-    private func login() {
-        isLoading = true
+    private func emailLogin() {
         Task {
             do {
                 try await authService.signIn(email: email, password: password)
+            } catch let error as AuthError {
+                alertMessage = error.localizedDescription
+                showAlert = true
             } catch {
+                alertMessage = "登录失败：\(error.localizedDescription)"
                 showAlert = true
             }
-            isLoading = false
+        }
+    }
+    
+    private func googleLogin() {
+        Task {
+            do {
+                try await authService.signInWithGoogle()
+            } catch {
+                alertMessage = "Google 登录失败，请稍后重试"
+                showAlert = true
+            }
         }
     }
 } 

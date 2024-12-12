@@ -1,0 +1,24 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "vocabularytypes",
+          "kind" : "fileSystem",
+          "location" : "/Users/tanxin/workfile/JPL/JPL/VocabularyTypes",
+          "name" : "VocabularyTypes"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/tanxin/workfile/JPL/JPL/VocabularyTypes"
+        },
+        "subpath" : "vocabularytypes"
+      }
+    ]
+  },
+  "version" : 6
+}
