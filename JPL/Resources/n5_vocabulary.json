@@ -1,0 +1,220 @@
+{
+    "version": "1.0",
+    "level": "N5",
+    "categories": {
+        "pronouns": {
+            "name": "代词",
+            "description": "N5 级别代词",
+            "items": [
+                {
+                    "japanese": "私",
+                    "reading": "わたし",
+                    "meaning": "我",
+                    "partOfSpeech": "代词",
+                    "examples": [
+                        {
+                            "japanese": "私は学生です。",
+                            "reading": "わたしはがくせいです。",
+                            "meaning": "我是学生。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "あなた",
+                    "reading": "あなた",
+                    "meaning": "你",
+                    "partOfSpeech": "代词",
+                    "examples": [
+                        {
+                            "japanese": "あなたの名前は何ですか。",
+                            "reading": "あ��たのなまえはなんですか。",
+                            "meaning": "你叫什么名字？"
+                        }
+                    ]
+                }
+            ]
+        },
+        "nouns_time": {
+            "name": "时间名词",
+            "description": "表示时间的名词",
+            "items": [
+                {
+                    "japanese": "今日",
+                    "reading": "きょう",
+                    "meaning": "今天",
+                    "partOfSpeech": "名词",
+                    "examples": [
+                        {
+                            "japanese": "今日は晴れです。",
+                            "reading": "きょうははれです。",
+                            "meaning": "今天是晴天。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "明日",
+                    "reading": "あした",
+                    "meaning": "明天",
+                    "partOfSpeech": "名词",
+                    "examples": [
+                        {
+                            "japanese": "明日は雨です。",
+                            "reading": "あしたはあめです。",
+                            "meaning": "明天是雨天。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "verbs_daily": {
+            "name": "日常动词",
+            "description": "日常生活中常用的动词",
+            "items": [
+                {
+                    "japanese": "食べる",
+                    "reading": "たべる",
+                    "meaning": "吃",
+                    "partOfSpeech": "动词",
+                    "conjugation": {
+                        "masu": "食べます",
+                        "te": "食べて",
+                        "ta": "食べた",
+                        "nai": "食べない"
+                    },
+                    "examples": [
+                        {
+                            "japanese": "ご飯を食べます。",
+                            "reading": "ごはんをたべます。",
+                            "meaning": "吃饭。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "飲む",
+                    "reading": "のむ",
+                    "meaning": "喝",
+                    "partOfSpeech": "动词",
+                    "conjugation": {
+                        "masu": "���みます",
+                        "te": "飲んで",
+                        "ta": "飲んだ",
+                        "nai": "飲まない"
+                    },
+                    "examples": [
+                        {
+                            "japanese": "水を飲みます。",
+                            "reading": "みずをのみます。",
+                            "meaning": "喝水。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "adjectives_basic": {
+            "name": "基础形容词",
+            "description": "基础描述性词汇",
+            "items": [
+                {
+                    "japanese": "大きい",
+                    "reading": "おおきい",
+                    "meaning": "大的",
+                    "partOfSpeech": "い形容词",
+                    "conjugation": {
+                        "past": "大きかった",
+                        "negative": "大きくない",
+                        "te": "大きくて"
+                    },
+                    "examples": [
+                        {
+                            "japanese": "この部屋は大きいです。",
+                            "reading": "このへやはおおきいです。",
+                            "meaning": "这个房间很大。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "小さい",
+                    "reading": "ちいさい",
+                    "meaning": "小的",
+                    "partOfSpeech": "い形容词",
+                    "conjugation": {
+                        "past": "小さかった",
+                        "negative": "小さくない",
+                        "te": "小さくて"
+                    },
+                    "examples": [
+                        {
+                            "japanese": "この本は小さいです。",
+                            "reading": "このほんはちいさいです。",
+                            "meaning": "这本书很小。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "particles": {
+            "name": "助词",
+            "description": "基础助词",
+            "items": [
+                {
+                    "japanese": "は",
+                    "reading": "は",
+                    "meaning": "主题助词",
+                    "partOfSpeech": "助词",
+                    "examples": [
+                        {
+                            "japanese": "私は学生です。",
+                            "reading": "わたしはがくせいです。",
+                            "meaning": "我是学生。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "を",
+                    "reading": "を",
+                    "meaning": "宾语助词",
+                    "partOfSpeech": "助词",
+                    "examples": [
+                        {
+                            "japanese": "本を読みます。",
+                            "reading": "ほんをよみます。",
+                            "meaning": "读书。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "name": "数字",
+            "description": "基础数字",
+            "items": [
+                {
+                    "japanese": "一",
+                    "reading": "いち",
+                    "meaning": "一",
+                    "partOfSpeech": "数词",
+                    "examples": [
+                        {
+                            "japanese": "一年生です。",
+                            "reading": "いちねんせいです。",
+                            "meaning": "是一年级学生。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "二",
+                    "reading": "に",
+                    "meaning": "二",
+                    "partOfSpeech": "数词",
+                    "examples": [
+                        {
+                            "japanese": "二階です。",
+                            "reading": "にかいです。",
+                            "meaning": "是二楼。"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+} 

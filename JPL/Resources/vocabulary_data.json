@@ -1,0 +1,154 @@
+{
+    "version": "1.0",
+    "categories": {
+        "hiragana": {
+            "name": "平假名",
+            "description": "日语基础假名",
+            "items": [
+                {
+                    "japanese": "あ",
+                    "reading": "a",
+                    "meaning": "あ段假名",
+                    "partOfSpeech": "假名",
+                    "order": 1,
+                    "examples": []
+                },
+                {
+                    "japanese": "い",
+                    "reading": "i",
+                    "meaning": "い段假名",
+                    "partOfSpeech": "假名",
+                    "order": 2,
+                    "examples": []
+                }
+            ]
+        },
+        "katakana": {
+            "name": "片假名",
+            "description": "外来语假名",
+            "items": [
+                {
+                    "japanese": "ア",
+                    "reading": "a",
+                    "meaning": "ア段假名",
+                    "partOfSpeech": "假名",
+                    "order": 1,
+                    "examples": []
+                },
+                {
+                    "japanese": "イ",
+                    "reading": "i",
+                    "meaning": "イ段假名",
+                    "partOfSpeech": "假名",
+                    "order": 2,
+                    "examples": []
+                }
+            ]
+        },
+        "n5_nouns": {
+            "name": "N5名词",
+            "description": "JLPT N5 级别名词",
+            "items": [
+                {
+                    "japanese": "私",
+                    "reading": "わたし",
+                    "meaning": "我",
+                    "partOfSpeech": "代词",
+                    "order": 1,
+                    "examples": [
+                        {
+                            "japanese": "私は学生です。",
+                            "reading": "わたしはがくせいです。",
+                            "meaning": "我是学生。"
+                        }
+                    ]
+                },
+                {
+                    "japanese": "学生",
+                    "reading": "がくせい",
+                    "meaning": "学生",
+                    "partOfSpeech": "名词",
+                    "order": 2,
+                    "examples": [
+                        {
+                            "japanese": "彼は学生です。",
+                            "reading": "かれはがくせいです。",
+                            "meaning": "他是学生。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "n5_verbs": {
+            "name": "N5动词",
+            "description": "JLPT N5 级别动词",
+            "items": [
+                {
+                    "japanese": "食べる",
+                    "reading": "たべる",
+                    "meaning": "吃",
+                    "partOfSpeech": "动词",
+                    "order": 1,
+                    "conjugation": {
+                        "masu": "食べます",
+                        "te": "食べて",
+                        "ta": "食べた",
+                        "nai": "食べない"
+                    },
+                    "examples": [
+                        {
+                            "japanese": "ご飯を食べます。",
+                            "reading": "ごはんをたべます。",
+                            "meaning": "吃饭。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "n5_adjectives": {
+            "name": "N5形容词",
+            "description": "JLPT N5 级别形容词",
+            "items": [
+                {
+                    "japanese": "大きい",
+                    "reading": "おおきい",
+                    "meaning": "大的",
+                    "partOfSpeech": "い形容词",
+                    "order": 1,
+                    "conjugation": {
+                        "past": "大きかった",
+                        "negative": "大きくない",
+                        "te": "大きくて"
+                    },
+                    "examples": [
+                        {
+                            "japanese": "この部屋は大きいです。",
+                            "reading": "このへやはおおきいです。",
+                            "meaning": "这个房间很大。"
+                        }
+                    ]
+                }
+            ]
+        },
+        "greetings": {
+            "name": "问候语",
+            "description": "日常问候用语",
+            "items": [
+                {
+                    "japanese": "こんにちは",
+                    "reading": "こんにちは",
+                    "meaning": "你���",
+                    "partOfSpeech": "感叹词",
+                    "order": 1,
+                    "examples": [
+                        {
+                            "japanese": "こんにちは、元気ですか。",
+                            "reading": "こんにちは、げんきですか。",
+                            "meaning": "你好，你好吗？"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+} 
